@@ -27,28 +27,8 @@ function Map() {
     });
   }
 
-  function handleNoResult() {
-    console.log("No results for ", state.search);
-  }
-
-  function handleStatusUpdate(status: any) {
-    console.log(status);
-  }
-  // let map: google.maps.Map;
-  // // let libraries: google.maps.places.PlacesService;
-  // const loader = new Loader({
-  //   apiKey: "AIzaSyBf9nU8O65mgqqR2jACgDn03BMLHY7q_Ak",
-  //   version: "weekly",
-  // });
-  // loader.load().then(() => {
-  //   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-  //     center: { lat: -34.397, lng: 150.644 },
-  //     zoom: 8,
-  //   });
-  // });
   return (
     <>
-      {/* <div style={{ width: "500px", height: "500px" }} id="map"></div> */}
       <ReactGoogleMapLoader
         params={{
           key: "AIzaSyBf9nU8O65mgqqR2jACgDn03BMLHY7q_Ak",
@@ -57,18 +37,6 @@ function Map() {
         render={(googleMaps) =>
           googleMaps && (
             <>
-              <div style={{ height: "100vh", width: "100%" }}>
-                <GoogleMapReact
-                  bootstrapURLKeys={{
-                    key: "AIzaSyBf9nU8O65mgqqR2jACgDn03BMLHY7q_Ak",
-                  }}
-                  defaultCenter={{
-                    lat: 59.95,
-                    lng: 30.33,
-                  }}
-                  defaultZoom={zoom}
-                ></GoogleMapReact>
-              </div>
               <ReactGooglePlacesSuggest
                 googleMaps={googleMaps}
                 autocompletionRequest={{
@@ -77,9 +45,8 @@ function Map() {
                   // https://developers.google.com/maps/documentation/javascript/reference?hl=fr#AutocompletionRequest
                 }}
                 // Optional props
-                // onNoResult={handleNoResult}
+
                 onSelectSuggest={handleSelectSuggest}
-                // onStatusUpdate={handleStatusUpdate}
                 textNoResults="My custom no results text" // null or "" if you want to disable the no results item
                 customRender={(prediction) => (
                   <div className="customWrapper">
@@ -96,6 +63,18 @@ function Map() {
                   onChange={handleInputChange}
                 />
               </ReactGooglePlacesSuggest>
+              <div style={{ height: "100vh", width: "100%" }}>
+                <GoogleMapReact
+                  bootstrapURLKeys={{
+                    key: "AIzaSyBf9nU8O65mgqqR2jACgDn03BMLHY7q_Ak",
+                  }}
+                  defaultCenter={{
+                    lat: 59.95,
+                    lng: 30.33,
+                  }}
+                  defaultZoom={zoom}
+                ></GoogleMapReact>
+              </div>
             </>
           )
         }
