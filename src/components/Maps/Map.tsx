@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 
-import { Loader } from "@googlemaps/js-api-loader";
+// import { Loader } from "@googlemaps/js-api-loader";
 import ReactGoogleMapLoader from "react-google-maps-loader";
 import ReactGooglePlacesSuggest from "react-google-places-suggest";
+import Input from "../Input";
 import GoogleMapReact from "google-map-react";
 
 // import ReactGoogleMap from "react-google-map";
 function Map() {
-  const [zoom, setZoom] = useState(3);
+  const [zoom, setZoom] = useState(4);
   const [state, setState] = useState({
     search: "",
     value: "",
   });
   function handleInputChange(e: any) {
     setState({ search: e.target.value, value: e.target.value });
+    console.log(e.target.value);
   }
 
   function handleSelectSuggest(
@@ -56,14 +58,16 @@ function Map() {
                   </div>
                 )}
               >
-                <input
+                <Input
                   type="text"
+                  id="searcherPlace"
+                  label="Search a location"
                   value={state.value}
                   placeholder="Search a location"
-                  onChange={handleInputChange}
+                  handleChange={handleInputChange}
                 />
               </ReactGooglePlacesSuggest>
-              <div style={{ height: "100vh", width: "100%" }}>
+              <div style={{ height: "85vh", width: "100%" }}>
                 <GoogleMapReact
                   bootstrapURLKeys={{
                     key: "AIzaSyBf9nU8O65mgqqR2jACgDn03BMLHY7q_Ak",
