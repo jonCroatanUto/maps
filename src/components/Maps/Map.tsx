@@ -5,10 +5,22 @@ import ReactGoogleMapLoader from "react-google-maps-loader";
 import ReactGooglePlacesSuggest from "react-google-places-suggest";
 import Input from "../Input";
 import GoogleMapReact from "google-map-react";
+import CurrentMarker from "../currentMarker";
 
 // import ReactGoogleMap from "react-google-map";
 function Map() {
-  const [predictionLine, setPredictionLine] = useState();
+  const [currentMarkerCorrdenates, setCurrentMarkerCorrdenates] = useState({
+    lat: 59.95,
+    lng: 30.33,
+  });
+  const [markerListCorrdenates, setMarkerListCorrdenates] = useState([
+    {
+      lat: 59.95,
+      lng: 30.33,
+    },
+  ]);
+
+  //const [predictionLine, setPredictionLine] = useState();
   const [zoom, setZoom] = useState(4);
   const [state, setState] = useState({
     search: "",
@@ -22,13 +34,16 @@ function Map() {
     geocodedPrediction: any,
     originalPrediction: any
   ) {
-    console.log(geocodedPrediction, originalPrediction); // eslint-disable-line
+    setCurrentMarkerCorrdenates({
+      lat: geocodedPrediction.geometry.viewport.Ab.h,
+      lng: geocodedPrediction.geometry.viewport.Ra.h,
+    }); // eslint-disable-line
     setState({
       search: "",
       value: geocodedPrediction.formatted_address,
     });
   }
-
+  const { lat, lng } = currentMarkerCorrdenates;
   return (
     <>
       <ReactGoogleMapLoader
@@ -53,22 +68,22 @@ function Map() {
                 customRender={(prediction) => (
                   <div className="customWrapper">
                     <>
-                      <p style={{ fontSize: "20px" }}>
+                      <p style={{ fontSize: "30px" }}>
                         {prediction?.description}
                       </p>
 
                       {/* 
                       Intentant que els caracters coincidents estiguin en negrita
-    
-                      {[prediction?.description].map((sentence: any, index) => {
+  
+                       {[prediction?.description].map((sentence: any, index) => {
                         if (sentence.slice(0, index) === state.value) {
                           return (
                             <p style={{ fontWeight: "blood" }}>
-                              sentence.slice(0, index)
+                              {sentence.slice(0, index)}
                             </p>
                           );
                         }
-                      })} */}
+                      })}  */}
                     </>
                   </div>
                 )}
@@ -85,17 +100,19 @@ function Map() {
                   handleChange={handleInputChange}
                 />
               </ReactGooglePlacesSuggest>
-              <div style={{ height: "85vh", width: "100%" }}>
+              <div style={{ height: "100vh", width: "100%" }}>
                 <GoogleMapReact
                   bootstrapURLKeys={{
                     key: "AIzaSyBf9nU8O65mgqqR2jACgDn03BMLHY7q_Ak",
                   }}
                   defaultCenter={{
-                    lat: 59.95,
-                    lng: 30.33,
+                    lat: lat,
+                    lng: lng,
                   }}
                   defaultZoom={zoom}
-                ></GoogleMapReact>
+                >
+                  <CurrentMarker lat={lat} lng={lng} text="My Marker" />
+                </GoogleMapReact>
               </div>
             </>
           )

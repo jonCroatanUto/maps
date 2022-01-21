@@ -1,0 +1,12 @@
+.markerContainer {
+  border: 2px solid tomato;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  width: 80px;
+  height: 40px;
+  background-color: yellow;
+}
+.markerContainer p {
+  padding: 5px;
+}
