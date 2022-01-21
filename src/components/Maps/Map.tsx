@@ -8,6 +8,7 @@ import GoogleMapReact from "google-map-react";
 
 // import ReactGoogleMap from "react-google-map";
 function Map() {
+  const [predictionLine, setPredictionLine] = useState();
   const [zoom, setZoom] = useState(4);
   const [state, setState] = useState({
     search: "",
@@ -15,7 +16,6 @@ function Map() {
   });
   function handleInputChange(e: any) {
     setState({ search: e.target.value, value: e.target.value });
-    console.log(e.target.value);
   }
 
   function handleSelectSuggest(
@@ -52,11 +52,29 @@ function Map() {
                 textNoResults="My custom no results text" // null or "" if you want to disable the no results item
                 customRender={(prediction) => (
                   <div className="customWrapper">
-                    {prediction
-                      ? prediction.description
-                      : "My custom no results text"}
+                    <>
+                      <p style={{ fontSize: "20px" }}>
+                        {prediction?.description}
+                      </p>
+
+                      {/* 
+                      Intentant que els caracters coincidents estiguin en negrita
+    
+                      {[prediction?.description].map((sentence: any, index) => {
+                        if (sentence.slice(0, index) === state.value) {
+                          return (
+                            <p style={{ fontWeight: "blood" }}>
+                              sentence.slice(0, index)
+                            </p>
+                          );
+                        }
+                      })} */}
+                    </>
                   </div>
                 )}
+                // customContainerRender={(
+                //   items => <CustomWrapper>{items.map(item => <ItemWrapper>{item.description}</ItemWrapper>))}
+                // )}
               >
                 <Input
                   type="text"
