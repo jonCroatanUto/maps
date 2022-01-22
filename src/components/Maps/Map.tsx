@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // import { Loader } from "@googlemaps/js-api-loader";
 import ReactGoogleMapLoader from "react-google-maps-loader";
@@ -9,17 +9,14 @@ import CurrentMarker from "../currentMarker";
 
 // import ReactGoogleMap from "react-google-map";
 function Map() {
-  const [currentMarkerCorrdenates, setCurrentMarkerCorrdenates] = useState({
-    lat: 59.95,
-    lng: 30.33,
-  });
-  const [markerListCorrdenates, setMarkerListCorrdenates] = useState([
-    {
-      lat: 59.95,
-      lng: 30.33,
-    },
-  ]);
+  // const [currentMarkerCorrdenates, setCurrentMarkerCorrdenates] = useState({
+  //   lat: null,
+  //   lng: null,
+  // });
 
+  const [markerListCorrdenates, setMarkerListCorrdenates] = useState<any>([]);
+
+  // const { lat, lng } = currentMarkerCorrdenates;
   //const [predictionLine, setPredictionLine] = useState();
   const [zoom, setZoom] = useState(4);
   const [state, setState] = useState({
@@ -34,16 +31,23 @@ function Map() {
     geocodedPrediction: any,
     originalPrediction: any
   ) {
-    setCurrentMarkerCorrdenates({
-      lat: geocodedPrediction.geometry.viewport.Ab.h,
-      lng: geocodedPrediction.geometry.viewport.Ra.h,
-    }); // eslint-disable-line
+    // if (lat !== null && lng !== null) {
+    markerListCorrdenates.push({
+      lat: geocodedPrediction.geometry.viewport.Ab.g,
+      lng: geocodedPrediction.geometry.viewport.Ra.g,
+    });
+
+    // setCurrentMarkerCorrdenates({
+    //   lat: geocodedPrediction.geometry.viewport.Ab.h,
+    //   lng: geocodedPrediction.geometry.viewport.Ra.h,
+    // }); // eslint-disable-line
     setState({
       search: "",
       value: geocodedPrediction.formatted_address,
     });
+    console.log(markerListCorrdenates + "markers history");
   }
-  const { lat, lng } = currentMarkerCorrdenates;
+
   return (
     <>
       <ReactGoogleMapLoader
@@ -106,12 +110,26 @@ function Map() {
                     key: "AIzaSyBf9nU8O65mgqqR2jACgDn03BMLHY7q_Ak",
                   }}
                   defaultCenter={{
-                    lat: lat,
-                    lng: lng,
+                    lat: 59.95,
+                    lng: 30.33,
                   }}
                   defaultZoom={zoom}
                 >
-                  <CurrentMarker lat={lat} lng={lng} text="My Marker" />
+                  {/* {lat != null && lng !== null ? (
+                    <CurrentMarker lat={lat} lng={lng} text="My Marker" />
+                  ) : (
+                    <div></div>
+                  )} */}
+
+                  {markerListCorrdenates.map((marker: any) => {
+                    return (
+                      <CurrentMarker
+                        lat={marker.lat}
+                        lng={marker.lng}
+                        text="My Marker"
+                      />
+                    );
+                  })}
                 </GoogleMapReact>
               </div>
             </>
