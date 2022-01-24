@@ -4,7 +4,7 @@ import ReactGoogleMapLoader from "react-google-maps-loader";
 import ReactGooglePlacesSuggest from "react-google-places-suggest";
 import Input from "../Input";
 import GoogleMapReact from "google-map-react";
-import CurrentMarker from "../currentMarker";
+import Marker from "../currentMarker";
 import { addMarker } from "../../redux/markerReducer/actions";
 import { RootState } from "../../redux/reducers";
 
@@ -14,7 +14,6 @@ function Map() {
   );
 
   const dispatch = useDispatch();
-  // const [markerListCorrdenates, setMarkerListCorrdenates] = useState<any>([]);
 
   const [zoom, setZoom] = useState(4);
   const [state, setState] = useState({
@@ -29,16 +28,13 @@ function Map() {
     geocodedPrediction: any,
     originalPrediction: any
   ) {
+    const { formatted_address, geometry } = geocodedPrediction;
     const newMarker = {
-      lat: geocodedPrediction.geometry.viewport.Ab.g,
-      lng: geocodedPrediction.geometry.viewport.Ra.g,
+      place: formatted_address,
+      lat: geometry.viewport.Ab.g,
+      lng: geometry.viewport.Ra.g,
     };
     dispatch(addMarker(newMarker));
-
-    // markerListCorrdenates.push({
-    //   lat: geocodedPrediction.geometry.viewport.Ab.g,
-    //   lng: geocodedPrediction.geometry.viewport.Ra.g,
-    // });
 
     setState({
       search: "",
@@ -110,12 +106,21 @@ function Map() {
                   defaultZoom={zoom}
                 >
                   {[...markersData].map((marker: any, index) => {
+                    let lastElement = markersData.length - 1;
+                    let dynamicClass;
+                    if (index === lastElement) {
+                      dynamicClass = "currentMarkerContainer";
+                    } else {
+                      dynamicClass = "markerContainer";
+                    }
+
                     return (
-                      <CurrentMarker
+                      <Marker
+                        classString={dynamicClass}
                         key={index}
                         lat={marker.lat}
                         lng={marker.lng}
-                        text="My Marker"
+                        text={marker.place}
                       />
                     );
                   })}

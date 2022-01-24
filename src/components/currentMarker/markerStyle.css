@@ -1,12 +1,25 @@
-.markerContainer {
-  border: 2px solid tomato;
+.currentMarkerContainer {
+  border: 1px solid rgb(71, 255, 95);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
-  width: 80px;
-  height: 40px;
-  background-color: yellow;
+  display: inline-block;
+  background-color: rgb(215, 250, 247);
+  padding: 10px;
+}
+.markerContainer {
+  border: 1px solid rgb(172, 170, 170);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  display: inline-block;
+  background-color: rgba(237, 237, 237, 0.5);
+  padding: 5px;
 }
 .markerContainer p {
-  padding: 5px;
+  font-size: 15px;
+}
+.currentMarkerContainer p {
+  font-size: 30px;
+  color: blue;
 }
