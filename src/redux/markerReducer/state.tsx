@@ -1,6 +1,4 @@
-const initialState = {
-  markerData: {
-    data: "",
-  },
+const initialState: any = {
+  markersData: [],
 };
 export default initialState;

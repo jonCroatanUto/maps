@@ -6,26 +6,27 @@
 .input-label {
   transition: all 0.2s;
   touch-action: manipulation;
+  background-color: rgb(255, 255, 255);
 }
 
 .input-field {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   /* font-size: 1.5em; */
   border: 0;
-  border-right: 1px solid black;
+  transition: all 0.2s;
   border-bottom: 1px solid black;
   font-family: inherit;
   -webkit-appearance: none;
   cursor: text;
   color: black;
-  padding: 50px;
-  font-size: 40px;
+  padding: 35px;
+  font-size: 30px;
 }
 
 .input-field:focus {
   outline: 0;
-  border-bottom: black;
-  border-right: hidden;
+  background-color: rgb(234, 250, 253);
+  border-bottom: 2px solid rgb(155, 190, 235);
 }
 
 .input-label {
@@ -53,6 +54,8 @@
 
 .input-field:not(:placeholder-shown) + .input-label,
 .input-field:focus + .input-label {
+  background: linear-gradient(25deg, rgb(234, 250, 253), rgb(255, 255, 255));
+  padding: 0.5%;
   transform: translate(0, 0) scale(1);
   cursor: pointer;
   color: black;
