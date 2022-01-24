@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
 import ReactGoogleMapLoader from "react-google-maps-loader";
 import ReactGooglePlacesSuggest from "react-google-places-suggest";
 import Input from "../Input";
 import GoogleMapReact from "google-map-react";
 import CurrentMarker from "../currentMarker";
+import { addMarker } from "../../redux/markerReducer/actions";
+import { RootState } from "../../redux/reducers";
 
 function Map() {
-  const [markerListCorrdenates, setMarkerListCorrdenates] = useState<any>([]);
+  const { markersData } = useSelector(
+    (state: RootState) => state.markerReducer
+  );
+
+  const dispatch = useDispatch();
+  // const [markerListCorrdenates, setMarkerListCorrdenates] = useState<any>([]);
 
   const [zoom, setZoom] = useState(4);
   const [state, setState] = useState({
@@ -22,16 +29,21 @@ function Map() {
     geocodedPrediction: any,
     originalPrediction: any
   ) {
-    markerListCorrdenates.push({
+    const newMarker = {
       lat: geocodedPrediction.geometry.viewport.Ab.g,
       lng: geocodedPrediction.geometry.viewport.Ra.g,
-    });
+    };
+    dispatch(addMarker(newMarker));
+
+    // markerListCorrdenates.push({
+    //   lat: geocodedPrediction.geometry.viewport.Ab.g,
+    //   lng: geocodedPrediction.geometry.viewport.Ra.g,
+    // });
 
     setState({
       search: "",
       value: geocodedPrediction.formatted_address,
     });
-    console.log(markerListCorrdenates + "markers history");
   }
 
   return (
@@ -97,9 +109,10 @@ function Map() {
                   }}
                   defaultZoom={zoom}
                 >
-                  {markerListCorrdenates.map((marker: any) => {
+                  {[...markersData].map((marker: any, index) => {
                     return (
                       <CurrentMarker
+                        key={index}
                         lat={marker.lat}
                         lng={marker.lng}
                         text="My Marker"
