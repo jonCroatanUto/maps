@@ -1,0 +1,22 @@
+.theoricalChallence {
+  padding: 2%;
+  margin: 2%;
+}
+.theoricalChallence h1 {
+  font-size: 50px;
+}
+.theoricalChallence h2 {
+  padding-left: 5%;
+  font-size: 35px;
+}
+.theoricalChallence p {
+  padding-left: 10%;
+  font-size: 30px;
+}
+.theoricalChallence img {
+  width: 100%;
+}
+.graphicContent {
+  display: inline-flex;
+  width: 100%;
+}

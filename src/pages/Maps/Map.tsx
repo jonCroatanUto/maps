@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactGoogleMapLoader from "react-google-maps-loader";
 import ReactGooglePlacesSuggest from "react-google-places-suggest";
-import Input from "../Input";
+import Input from "../../components/Input";
 import GoogleMapReact from "google-map-react";
-import Marker from "../currentMarker";
+import Marker from "../../components/currentMarker";
 import { addMarker } from "../../redux/markerReducer/actions";
 import { RootState } from "../../redux/reducers";
 
