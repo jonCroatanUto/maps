@@ -2,9 +2,15 @@ import React from "react";
 import SchemaImage from "./schema.png";
 import pseudocode from "./pseudocode.png";
 import "./styles.css";
+import { Link } from "react-router-dom";
 function TheoricalCHallence() {
   return (
     <div className="theoricalChallence">
+      <Link to="/practicalChallace">
+        <p style={{ fontSize: "20px", textDecoration: "none" }}>
+          Pracital challence
+        </p>
+      </Link>
       <h1>Part teórica</h1>
       <h2>Problema: </h2>
       <p>
