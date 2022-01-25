@@ -1,46 +1,78 @@
-# Getting Started with Create React App
+# maps
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app it show localte you places in a map!! I hope you all enjoyed!!!
 
-## Available Scripts
+## 🚀 to start
 
-In the project directory, you can run:
+to start to ejecuting this code you should:
 
-### `npm start`
+- Open your terminal in a concret folder
+- Ejecute the comand:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+git clone https://github.com/jonCroatanUto/maps.git
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Go inside the folder `maps` and run:
 
-### `npm test`
+```
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- For this project you should use this Api https://developers.themoviedb.org/3
+- Create a `.env` file adding in it:
 
-### `npm run build`
+```
+REACT_APP_GOOGLE_API=`this should be your google api key`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 🦴 Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Folder structure 🗂
 
-### `npm run eject`
+<pre>  
+├───.github     <i>// Github actions config files </i>
+├───public
+└───src	
+    ├───components
+    |        ├───Marker
+    |        ├───Maps
+    |        └───Input
+    ├───pages
+    |       ├───Home
+    |       ├───PracticalChallace
+    |       └───TheoricalChallace
+    |        
+    └───redux
+          └───MarkerReducer
+   
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+</pre>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# 🧭 App navigation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Home page 🗺
 
-## Learn More
+In the Home page you can found two links: one to see the theorical part of this challance , other to see the practical exercise
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Map component
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This components is the main component of the application, there is one call connection to google map api and it from this component. The call connect to component imported from react-google-map library and set the data from google api to them: <ReactGooglePlacesSuggest>to the input text that suggest places and <GoogleMapReact> that render the map.
+Both are Wrapped by the component <ReactGoogleMapLoader> that bring to the childs components the conection with google api , the api key and google libraries
+
+## Marker
+
+This component renders in map component when the user select a place. First of this the data that marker needs is set in a reducer. The render have to read if the marker is the current Marker and if it is render with different styles.
+
+# ✨ Wishlist
+
+- Get deeply with functionalities with jest, there is some error message related with syncronies functions that I don't know how to fixed yet (first time with it..).
+- modulate more my project , try to found a way to wrap the map and the place suggest input but in different files.
+- Change the type of coincident text on the placeSuggest
+- Get the ubication of the user , set in a redux and display in the map if the user accept to share it
+
+# 🖇️ Contributing
+
+If you want to contribute, please fork the repository, create a new branch whit your contribution, and push the branch as a pull requests.

@@ -8,7 +8,7 @@ function TheoricalCHallence() {
     <div className="theoricalChallence">
       <Link to="/practicalChallace">
         <p style={{ fontSize: "20px", textDecoration: "none" }}>
-          Pracital challence
+          Practital challence
         </p>
       </Link>
       <h1>Part teórica</h1>

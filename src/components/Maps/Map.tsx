@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactGoogleMapLoader from "react-google-maps-loader";
 import ReactGooglePlacesSuggest from "react-google-places-suggest";
-import Input from "../../components/Input";
+import Input from "../Input";
 import GoogleMapReact from "google-map-react";
-import Marker from "../../components/currentMarker";
+import Marker from "../Marker";
 import { addMarker } from "../../redux/markerReducer/actions";
 import { RootState } from "../../redux/reducers";
 
 function Map() {
+  const { REACT_APP_GOOGLE_API }: any = process.env;
   const { markersData } = useSelector(
     (state: RootState) => state.markerReducer
   );
@@ -46,7 +47,7 @@ function Map() {
     <>
       <ReactGoogleMapLoader
         params={{
-          key: "AIzaSyBf9nU8O65mgqqR2jACgDn03BMLHY7q_Ak",
+          key: REACT_APP_GOOGLE_API,
           libraries: "places,geocode",
         }}
         render={(googleMaps) =>

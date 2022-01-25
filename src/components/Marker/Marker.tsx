@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./markerStyle.css";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/reducers";
+
 function Marker(props: {
   classString: string;
   text: String;
