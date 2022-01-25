@@ -68,10 +68,10 @@ This component renders in map component when the user select a place. First of t
 
 # ✨ Wishlist
 
-- Get deeply with functionalities with jest, there is some error message related with syncronies functions that I don't know how to fixed yet (first time with it..).
 - modulate more my project , try to found a way to wrap the map and the place suggest input but in different files.
 - Change the type of coincident text on the placeSuggest
-- Get the ubication of the user , set in a redux and display in the map if the user accept to share it
+- Get the location of the user , set in a redux and display in the map if the user accept to share it.
+- When you don't specify a city , just write the country name, the marker location is wrong.
 
 # 🖇️ Contributing
 
