@@ -27,6 +27,8 @@ REACT_APP_GOOGLE_API=`this should be your google api key`
 
 ```
 
+You can found this app deployed [here](https://mappingtheworld.netlify.app) :
+
 # 🦴 Project Structure
 
 ## Folder structure 🗂
